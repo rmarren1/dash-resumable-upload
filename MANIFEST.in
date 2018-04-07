@@ -1,0 +1,5 @@
+include dash_resumable_upload/bundle.js
+include dash_resumable_upload/bundle.js.map
+include dash_resumable_upload/metadata.json
+include README.md
+include LICENSE.md
