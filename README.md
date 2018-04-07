@@ -2,6 +2,10 @@
 
 Dash Resumable Upload component for large files.
 
+This is an alternate (to dcc.Upload) dash upload component which uses [resumable.js](https://github.com/23/resumable.js) rather than just the HTML5 File API.
+
+To use it, you must wrap your `app.server` with the `dash_resumable_upload(app.server, 'path/where/data/goes')` method. This creates a flask endpoint that the uploader sends data to, and puts all uploaded files into this folder.
+
 ## Dash
 
 Go to this link to learn about [Dash][].
