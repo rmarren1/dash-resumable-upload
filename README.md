@@ -6,6 +6,9 @@ This is an alternate (to dcc.Upload) dash upload component which uses [resumable
 
 To use it, you must wrap your `app.server` with the `dash_resumable_upload(app.server, 'path/where/data/goes')` method. This creates a flask endpoint that the uploader sends data to, and puts all uploaded files into this folder.
 
+#### usage.py in action
+!()[demo.gif]
+
 ## Dash
 
 Go to this link to learn about [Dash][].

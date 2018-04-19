@@ -5,7 +5,7 @@ exec (open('dash_resumable_upload/version.py').read())
 setup(
     name='dash_resumable_upload',
     version=__version__,
-    author='rmarren1',
+    author='marrenr',
     packages=['dash_resumable_upload'],
     include_package_data=True,
     license='MIT',
