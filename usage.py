@@ -8,7 +8,7 @@ app = dash.Dash('')
 
 dash_resumable_upload.decorate_server(app.server, "uploads")
 
-app.scripts.config.serve_locally = True
+app.scripts.config.serve_locally = True  # Uploaded to npm, this can work online now too.
 
 app.css.append_css({
     "external_url": "https://codepen.io/rmarren1/pen/eMQKBW.css"
