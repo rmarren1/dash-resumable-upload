@@ -1,6 +1,7 @@
 from flask import request as _request
 from flask import abort as _abort
 import os as _os
+import shutil as _shutil
 import dash as _dash
 import sys as _sys
 from .version import __version__
@@ -108,13 +109,9 @@ def decorate_server(server, temp_base):
             target_file_name = _os.path.join(temp_base, resumableFilename)
             with open(target_file_name, "ab") as target_file:
                 for p in chunk_paths:
-                    stored_chunk_file_name = p
-                    stored_chunk_file = open(stored_chunk_file_name, 'rb')
-                    target_file.write(stored_chunk_file.read())
-                    stored_chunk_file.close()
-                    _os.unlink(stored_chunk_file_name)
-            target_file.close()
-            _os.rmdir(temp_dir)
+                    with open(p, 'rb') as stored_chunk_file:
+                        target_file.write(stored_chunk_file.read())
+            _shutil.rmtree(temp_dir)
             server.logger.debug('File saved to: %s', target_file_name)
 
         return resumableFilename
