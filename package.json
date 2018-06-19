@@ -1,6 +1,6 @@
 {
   "name": "dash-resumable-upload",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Dash Resumable Upload component for large files.",
   "main": "lib/index.js",
   "repository": {

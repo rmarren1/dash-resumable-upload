@@ -4,6 +4,7 @@ import os as _os
 import shutil as _shutil
 import dash as _dash
 import sys as _sys
+import time as _time
 from .version import __version__
 
 _current_path = _os.path.dirname(_os.path.abspath(__file__))
@@ -94,8 +95,18 @@ def decorate_server(server, temp_base):
         # save the chunk data
         chunk_name = get_chunk_name(resumableFilename, resumableChunkNumber)
         chunk_file = _os.path.join(temp_dir, chunk_name)
+
+        # make a lock file
+        lock_file_path = _os.path.join(
+            temp_dir,
+            '.lock_{:d}'.format(resumableChunkNumber)
+        )
+
+        with open(lock_file_path, 'a'):
+            _os.utime(lock_file_path, None)
         chunk_data.save(chunk_file)
         server.logger.debug('Saved chunk: %s', chunk_file)
+        _os.unlink(lock_file_path)
 
         # check if the upload is complete
         chunk_paths = [
@@ -106,13 +117,20 @@ def decorate_server(server, temp_base):
 
         # combine all the chunks to create the final file
         if upload_complete:
+            # Make sure all files are finished writing
+            while any([_os.path.isfile(
+                      _os.path.join(temp_dir, '.lock_{:d}'.format(chunk))
+                      ) for chunk in range(1, resumableTotalChunks + 1)]):
+                    _time.sleep(1)
+            # Make sure some other chunk didn't trigger file reconstruction
             target_file_name = _os.path.join(temp_base, resumableFilename)
-            with open(target_file_name, "ab") as target_file:
-                for p in chunk_paths:
-                    with open(p, 'rb') as stored_chunk_file:
-                        target_file.write(stored_chunk_file.read())
-            _shutil.rmtree(temp_dir)
-            server.logger.debug('File saved to: %s', target_file_name)
+            if not _os.path.exists(target_file_name):
+                with open(target_file_name, "ab") as target_file:
+                    for p in chunk_paths:
+                        with open(p, 'rb') as stored_chunk_file:
+                            target_file.write(stored_chunk_file.read())
+                server.logger.debug('File saved to: %s', target_file_name)
+                _shutil.rmtree(temp_dir)
 
         return resumableFilename
 

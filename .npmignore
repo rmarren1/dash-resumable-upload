@@ -1,4 +1,5 @@
 node_modules/
+demo.gif
 .npm
 .git/
 vv/
@@ -6,4 +7,5 @@ venv/
 *.pyc
 *.log
 .DS_Store
+uploads/*
 
