@@ -1,11 +1,14 @@
 import React from 'react';
-import {shallow} from 'enzyme';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import Upload from '../Upload.react';
 
 describe('Upload', () => {
 
+
     it('renders', () => {
-        const component = shallow(<Upload id="test"/>);
+        const renderer = new ShallowRenderer();
+        renderer.render(<Upload id="test"/>);
+        const component = renderer.getRenderOutput();
         expect(component).to.be.ok;
     });
 });

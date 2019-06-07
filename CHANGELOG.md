@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+# 0.0.4 - 2019-06-01
+### Fixed
+- Updated to work with latest version of Dash and React version 16
+
 ## 0.0.3 - 2018-06-19
 ### Fixed
 - Fix issue where in some environments, multiple threads will attempt

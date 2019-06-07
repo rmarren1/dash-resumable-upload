@@ -1,6 +1,6 @@
 {
   "name": "dash-resumable-upload",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Dash Resumable Upload component for large files.",
   "main": "lib/index.js",
   "repository": {
@@ -29,14 +29,14 @@
     "builder": "3.2.2",
     "copyfiles": "^1.2.0",
     "dash-components-archetype": "^0.2.11",
-    "prop-types": "^15.5.9",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "prop-types": "^15.7.2",
+    "react": "16.6.1",
     "resumablejs": "^1.1.0"
   },
   "devDependencies": {
     "dash-components-archetype-dev": "^0.2.11",
     "enzyme": "^2.8.2",
-    "react-test-renderer": "^15.5.4"
+    "react-dom": "16.6.1",
+    "react-test-renderer": "16.6.1"
   }
 }

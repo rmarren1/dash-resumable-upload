@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Resumablejs from 'resumablejs';
 
 export default class Upload extends Component {
